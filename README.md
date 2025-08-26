@@ -89,4 +89,4 @@ client.on("data", (data) => {
 - Write from client → triggers server’s `on("data")`.
 - Write from server → triggers client’s `on("data")`.
 - Broadcasting works by looping over all connected sockets and writing to each.
-- `Readline` allows interactive input so multiple clients can chat in real time.
+- `readline` allows interactive input so multiple clients can chat in real time.
