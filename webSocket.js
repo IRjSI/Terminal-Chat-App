@@ -18,6 +18,11 @@ wss.on('connection', function connection(ws) {
             // Save client name
             clients.set(ws, parsed.name);
             ws.send(`✅ Registered as ${parsed.name}`);
+            for (let client of clients.keys()) {
+                if (client.readyState === ws.OPEN) {
+                    client.send(`🔔 ${parsed.name} joined the chat`);
+                }
+            }
             return;
         }
 
@@ -32,6 +37,11 @@ wss.on('connection', function connection(ws) {
                 }
             }
         }
+    });
+
+    ws.on('close', () => {
+        clients.delete(ws);
+        console.log("Client disconnected");
     });
 
     ws.send('seed - 3');

@@ -202,3 +202,11 @@ ws.on('open', function open() {
 	});
 });
 ```
+## Client disconnect
+
+```js
+ws.on('close', () => {
+    clients.delete(ws);
+    console.log("Client disconnected");
+});
+```
