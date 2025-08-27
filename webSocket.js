@@ -17,7 +17,6 @@ wss.on('connection', function connection(ws) {
         if (parsed.type === "register") {
             // Save client name
             clients.set(ws, parsed.name);
-            ws.send(`✅ Registered as ${parsed.name}`);
             for (let client of clients.keys()) {
                 if (client.readyState === ws.OPEN) {
                     client.send(`🔔 ${parsed.name} joined the chat`);
@@ -44,5 +43,4 @@ wss.on('connection', function connection(ws) {
         console.log("Client disconnected");
     });
 
-    ws.send('seed - 3');
 });
